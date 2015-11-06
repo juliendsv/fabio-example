@@ -12,11 +12,11 @@ go get -u github.com/magiconair/fabio-example
 Run it
 
 ```
-./fabio-example -addr <service host:port> -prefix host/path,host/path,...
+./fabio-example -addr <service host:port> -prefix host/path,host/path,... -tag a-tag,another-tag
 
 e.g.
 
-./fabio-example -addr 127.0.0.1:5000 -prefix /foo,/bar
+./fabio-example -addr 127.0.0.1:5000 -prefix /foo,/bar -tag a,b
 ```
 
 
