@@ -16,10 +16,11 @@ import (
 )
 
 func main() {
-	var addr, name, prefix string
+	var addr, name, prefix, tag string
 	flag.StringVar(&addr, "addr", "127.0.0.1:5000", "host:port of the service")
-	flag.StringVar(&name, "name", filepath.Base(os.Args[0]), "name of the service")
+	flag.StringVar(&name, "name", filepath.Base(os.Args[0]), "name of the service (optional)")
 	flag.StringVar(&prefix, "prefix", "", "comma-sep list of host/path prefixes to register")
+	flag.StringVar(&tag, "tag", "", "comma-sep list of tags to register (optional)")
 	flag.Parse()
 
 	if prefix == "" {
@@ -53,6 +54,11 @@ func main() {
 	var tags []string
 	for _, p := range prefixes {
 		tags = append(tags, "urlprefix-"+p)
+	}
+
+	additionnalTags := strings.Split(tag, ",")
+	for _, t := range additionnalTags {
+		tags = append(tags, t)
 	}
 
 	// get host and port as string/int
